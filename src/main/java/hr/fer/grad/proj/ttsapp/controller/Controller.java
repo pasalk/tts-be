@@ -8,6 +8,8 @@ import hr.fer.grad.proj.ttsapp.service.TTSService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +41,11 @@ public class Controller {
     @PostMapping("/generateAndDownloadSpeech")
     public ResponseEntity<Resource> generateAndDownloadSpeech(@RequestBody final GenerateSpeechDto generateSpeechDto) throws ExecutionException, InterruptedException {
         byte[] audio = ttsService.generateAndDownloadSpeech(generateSpeechDto);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentDisposition(
+                ContentDisposition.builder("inline")
+                        .filename("audiofile.wav").build()
+        );
         ByteArrayResource byteArrayResource = new ByteArrayResource(audio);
         return ResponseEntity.ok()
                 .contentLength(audio.length)
