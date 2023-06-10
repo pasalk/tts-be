@@ -1,13 +1,7 @@
 image: openjdk:17
 
 stages:
-  - build
   - deploy
-
-build:
-  stage: build
-  script:
-    - mvn clean package -B
 
 deploy:
   stage: deploy
