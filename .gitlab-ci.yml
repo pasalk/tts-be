@@ -1,8 +1,15 @@
 image: openjdk:17
 
 stages:
+  - build
   - deploy
 
+build:
+  stage: build
+  script:
+    - apt-get update -qy
+    - apt-get install -y maven
+    - mvn clean package
 deploy:
   stage: deploy
   script:
