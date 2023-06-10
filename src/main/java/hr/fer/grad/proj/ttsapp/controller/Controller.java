@@ -41,13 +41,16 @@ public class Controller {
     @PostMapping("/generateAndDownloadSpeech")
     public ResponseEntity<Resource> generateAndDownloadSpeech(@RequestBody final GenerateSpeechDto generateSpeechDto) throws ExecutionException, InterruptedException {
         byte[] audio = ttsService.generateAndDownloadSpeech(generateSpeechDto);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentDisposition(
                 ContentDisposition.builder("inline")
                         .filename("audiofile.wav").build()
         );
+
         ByteArrayResource byteArrayResource = new ByteArrayResource(audio);
         return ResponseEntity.ok()
+                .headers(headers)
                 .contentLength(audio.length)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(byteArrayResource);
