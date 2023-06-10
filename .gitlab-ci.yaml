@@ -2,12 +2,19 @@ image: openjdk:17
 
 stages:
   - build
+  - deploy
 
 build:
   stage: build
   script:
-    - chmod +x ./mvnw
-    - ./mvnw package
-  artifacts:
-    paths:
-      - target/ttsapp-0.0.1-SNAPSHOT.jar
+    - mvn clean package -B
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y wget
+    - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+    - apt-get install -y ruby
+    - gem install dpl
+    - dpl --provider=heroku --app=tts-application --api-key=$HEROKU_API_KEY
