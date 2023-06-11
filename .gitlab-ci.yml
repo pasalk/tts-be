@@ -10,13 +10,9 @@ build:
 
 deploy:
   stage: deploy
-  image:
-    name: registry.heroku.com/tts-application/web
+  image: ruby:latest
   script:
-    - apt-get update && apt-get install -y curl
-    - curl https://cli-assets.heroku.com/install.sh | sh
-    - export PATH="/usr/local/heroku/bin:$PATH"
-    - echo f0194e82-74c8-4a7b-b941-b787c54b0a79 | docker login --username=_ --password-stdin registry.heroku.com
-    - heroku container:login
-    - heroku container:push web --app tts-application
-    - heroku container:release web --app tts-application
+    - apt update -qy
+    - apt install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=<appName> --api-key=$HEROKU_API_KEY
