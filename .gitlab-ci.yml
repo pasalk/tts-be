@@ -10,9 +10,9 @@ build:
 
 deploy:
   stage: deploy
-  image: ruby:3.2.2-bullseye
+  image: ruby:latest
   script:
     - apt-get update -qy
-    - apt-get install -y ruby-full
+    - apt-get install -y ruby-dev
     - gem install dpl
     - dpl --provider=heroku --app=tts-application --api-key=f0194e82-74c8-4a7b-b941-b787c54b0a79
