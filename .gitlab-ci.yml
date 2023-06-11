@@ -15,4 +15,4 @@ deploy:
     - apt update -qy
     - apt install -y ruby-dev
     - gem install dpl
-    - dpl --provider=heroku --app=<appName> --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=tts-application --api-key=f0194e82-74c8-4a7b-b941-b787c54b0a79
