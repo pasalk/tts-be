@@ -1,20 +1,22 @@
-image: maven:latest
-
-
 stages:
   - build
   - deploy
 
 build:
   stage: build
+  image: maven:latest
   script:
     - mvn clean package
+
 deploy:
   stage: deploy
+  image:
+    name: registry.heroku.com/tts-application/web
   script:
-    - apt-get update -qy
-    - apt-get install -y wget
-    - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-    - apt-get install -y ruby
-    - gem install dpl
-    - dpl --provider=heroku --app=tts-application --api-key=$HEROKU_API_KEY
+    - apt-get update -y
+    - apt-get install -y curl
+    - curl https://cli-assets.heroku.com/install.sh | sh
+    - heroku container:login
+    - docker pull registry.heroku.com/tts-application/web
+    - docker run -d -p $PORT:8080 --name web registry.heroku.com/tts-application/web
+    - heroku container:release web --app tts-application - docker run -d -p 8080:8080 $CI_REGISTRY_IMAGE:latest
