@@ -12,7 +12,7 @@ deploy:
   stage: deploy
   image: maven:3.8.4-openjdk-17
   script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
+    - curl https://cli-assets.heroku.com/install.sh | sh
+    - export PATH="/usr/local/heroku/bin:$PATH"
     - gem install dpl
     - dpl --provider=heroku --app=tts-application --api-key=f0194e82-74c8-4a7b-b941-b787c54b0a79
