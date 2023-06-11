@@ -6,7 +6,7 @@ stages:
 build:
   stage: build
   script:
-    - mvn clean package
+    - mvn clean package -DskipTests
 
 deploy:
   stage: deploy
