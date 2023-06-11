@@ -17,6 +17,6 @@ deploy:
     - apt update && apt install -y curl
     - curl https://cli-assets.heroku.com/install.sh | sh
     - export PATH="/usr/local/heroku/bin:$PATH"
-    - echo $HEROKU_API_KEY | heroku login --interactive
+    - echo f0194e82-74c8-4a7b-b941-b787c54b0a79 | heroku login --interactive
     - heroku git:remote --app tts-application
     - git push heroku master
