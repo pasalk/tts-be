@@ -10,7 +10,7 @@ build:
 
 deploy:
   stage: deploy
-  image: ruby:latest
+  image: maven:3.8.4-openjdk-17
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
