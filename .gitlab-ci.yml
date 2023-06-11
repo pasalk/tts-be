@@ -10,7 +10,7 @@ build:
 
 deploy:
   stage: deploy
-  image: ruby:latest
+  image: maven:latest
   script:
     - apt update -qy
     - apt install -y ruby-dev
