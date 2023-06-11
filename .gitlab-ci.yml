@@ -13,10 +13,5 @@ deploy:
   image:
     name: registry.heroku.com/tts-application/web
   script:
-    - echo "Deploying the application to Heroku..."
-    - apt update && apt install -y curl
-    - curl https://cli-assets.heroku.com/install.sh | sh
-    - export PATH="/usr/local/heroku/bin:$PATH"
-    - echo f0194e82-74c8-4a7b-b941-b787c54b0a79 | heroku login --interactive
-    - heroku git:remote --app tts-application
-    - git push heroku master
+    - gem install dpl
+    - dpl --provider=heroku --app=tts-application --api-key=f0194e82-74c8-4a7b-b941-b787c54b0a79
