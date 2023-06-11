@@ -95,9 +95,9 @@
                 </executions>
                 <configuration>
                     <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://localhost:5432/tts</url>
-                    <user>tts</user>
-                    <password>tts</password>
+                    <url>jdbc:postgresql://ec2-34-251-233-253.eu-west-1.compute.amazonaws.com:5432/dcjmop8mqoe4c</url>
+                    <user>nkvbqaxtadyizq</user>
+                    <password>0b194f6e1ce9de46498d9643ddff735582f81c7a1aecafebb9aeb97ba5bc8987</password>
                     <baselineOnMigrate>true</baselineOnMigrate>
                     <schemas>public</schemas>
                     <locations>
