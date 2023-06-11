@@ -10,7 +10,7 @@ build:
 
 deploy:
   stage: deploy
-  image: drecom/ubuntu-ruby
+  image: drecom/ubuntu-ruby:latest
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
