@@ -10,7 +10,7 @@ build:
 
 deploy:
   stage: deploy
-  image: ubuntu:latest
+  image: ruby:3.2.2-bullseye
   script:
     - apt-get update -qy
     - apt-get install -y ruby-full
