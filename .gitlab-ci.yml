@@ -13,10 +13,10 @@ deploy:
   image:
     name: registry.heroku.com/tts-application/web
   script:
-    - apt-get update -y
-    - apt-get install -y curl
+    - echo "Deploying the application to Heroku..."
+    - apt update && apt install -y curl
     - curl https://cli-assets.heroku.com/install.sh | sh
-    - heroku container:login
-    - docker pull registry.heroku.com/tts-application/web
-    - docker run -d -p $PORT:8080 --name web registry.heroku.com/tts-application/web
-    - heroku container:release web --app tts-application - docker run -d -p 8080:8080 $CI_REGISTRY_IMAGE:latest
+    - export PATH="/usr/local/heroku/bin:$PATH"
+    - echo $HEROKU_API_KEY | heroku login --interactive
+    - heroku git:remote --app tts-application
+    - git push heroku master
