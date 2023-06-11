@@ -10,9 +10,9 @@ build:
 
 deploy:
   stage: deploy
-  image: drecom/ubuntu-ruby:latest
+  image: ubuntu:latest
   script:
     - apt-get update -qy
-    - apt-get install -y ruby-dev
+    - apt-get install -y ruby-full
     - gem install dpl
     - dpl --provider=heroku --app=tts-application --api-key=f0194e82-74c8-4a7b-b941-b787c54b0a79
