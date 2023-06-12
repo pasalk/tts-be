@@ -10,7 +10,6 @@ import java.util.*;
 
 @Repository
 public interface LanguageRepository extends JpaRepository<Language, Long> {
-
     @Query(""" 
             SELECT language FROM Language language
             WHERE :query is NULL OR lower(language.name) LIKE lower(CONCAT('%', CAST(:query as string), '%'))

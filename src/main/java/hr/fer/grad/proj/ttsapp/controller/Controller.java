@@ -27,15 +27,15 @@ public class Controller {
     private final TTSService ttsService;
 
     @GetMapping("/hello")
-    public ResponseEntity<String> sayHello(){
+    public ResponseEntity<String> sayHello() {
         return ResponseEntity.ok("Hello");
     }
 
     @PostMapping("/generateSpeech")
-    public ResponseEntity<String> generateSpeech(@RequestBody final GenerateSpeechDto generateSpeechDto) throws ExecutionException, InterruptedException {
+    public ResponseEntity<String> generateSpeech(@RequestBody final GenerateSpeechDto generateSpeechDto)
+            throws ExecutionException, InterruptedException {
         ttsService.generateSpeech(generateSpeechDto);
         return ResponseEntity.ok("Your text has been generated.");
-
     }
 
     @PostMapping("/generateAndDownloadSpeech")
@@ -58,12 +58,12 @@ public class Controller {
     }
 
     @PostMapping("/language/list")
-    public ResponseEntity<List<KeyValueDto>> getLanguagesList(@RequestBody final LanguageSearchRequestDto languageSearchRequestDto){
+    public ResponseEntity<List<KeyValueDto>> getLanguagesList(@RequestBody final LanguageSearchRequestDto languageSearchRequestDto) {
         return ResponseEntity.ok(ttsService.getLanguagesList(languageSearchRequestDto));
     }
 
     @PostMapping("/voice/list")
-    public ResponseEntity<List<KeyValueDto>> getVoicesList(@RequestBody final VoiceSearchRequestDto voiceSearchRequestDto){
+    public ResponseEntity<List<KeyValueDto>> getVoicesList(@RequestBody final VoiceSearchRequestDto voiceSearchRequestDto) {
         return ResponseEntity.ok(ttsService.getVoicesList(voiceSearchRequestDto));
     }
 }
