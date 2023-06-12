@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  tts-database:
+    image: postgres
+    container_name: "tts-postgres"
+    environment:
+      POSTGRES_USER: "tts"
+      POSTGRES_DB: "tts"
+      POSTGRES_PASSWORD: "tts"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "tts-postgres:/var/lib/postgresql/data"
+
+volumes:
+  tts-postgres:
