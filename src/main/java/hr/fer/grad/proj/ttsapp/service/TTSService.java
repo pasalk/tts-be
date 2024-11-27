@@ -27,8 +27,8 @@ public class TTSService {
     private final VoiceRepository voiceRepository;
     private final VoiceMapper voiceMapper;
 
-    private static final String SUBSCRIPTION_KEY = "e20d5b100aca4bacb193cf00ba35f353";
-    private static final String SERVICE_REGION = "WestEurope";
+    private static final String SUBSCRIPTION_KEY = "add-your-subscription-key";
+    private static final String SERVICE_REGION = "add-your-service-region";
 
     public List<KeyValueDto> getLanguagesList(final LanguageSearchRequestDto languageSearchRequestDto){
         return languageRepository.getQueriedLanguages(languageSearchRequestDto.getQuery())
